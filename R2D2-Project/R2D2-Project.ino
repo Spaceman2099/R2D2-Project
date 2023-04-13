@@ -16,58 +16,6 @@ void loop() {
   if (Serial.available() > 0) {
     state = Serial.read();
     Stop();
-    switch (state) {
-      case 'F':
-        forward();
-        soundFX(3000.0,30+400*(1+sin(millis()/5000)));
-        break;
-      case 'G':
-        forwardleft();
-        soundFX(3000.0,60);
-        break;  
-      case 'D':
-        forwardright();
-        soundFX(3000.0,60);
-        break;  
-      case 'N':
-        backright();
-        soundFX(3000.0,30+100*(1+sin(millis()/2500)));
-        break;
-      case 'C':
-        backleft();
-        soundFX(3000.0,30+100*(1+sin(millis()/2500)));
-        soundFX(3000.0,30+100*(1+sin(millis()/2500)));
-        soundFX(3000.0,30+100*(1+sin(millis()/2500)));
-        soundFX(3000.0,30+100*(1+sin(millis()/2500)));
-        break;
-      case 'B':
-        back();
-        soundFX(3000.0,30+200*(1+sin(millis()/2500)));
-        soundFX(3000.0,30+200*(1+sin(millis()/2500)));
-        soundFX(3000.0,30+200*(1+sin(millis()/2500)));
-        soundFX(3000.0,30+200*(1+sin(millis()/2500)));
-        break;
-      case 'L':
-        left();
-        soundFX(3000.0,60);
-        soundFX(3000.0,60);
-        soundFX(3000.0,60);
-        soundFX(3000.0,60);
-        break;
-      case 'R':
-        right();
-        soundFX(3000.0,60);
-        soundFX(3000.0,60);
-        soundFX(3000.0,60);
-        soundFX(3000.0,60);
-        break;
-      case 'H':
-        soundFX(3000.0,30+200*(1+sin(millis()/2500)));
-        soundFX(3000.0,60);
-        soundFX(3000.0,30+200*(1+sin(millis()/2500)));
-        soundFX(3000.0,60);
-    }
-
   }
 }
 void forward() {
@@ -108,12 +56,4 @@ void Stop() {
   analogWrite(in3, 0);
   analogWrite(in4, 0);
 }
-void soundFX(float amplitude,float period){
- int uDelay=2+amplitude+amplitude*sin(millis()/period);
- for(int i=0;i<5;i++){
-   digitalWrite(piezo,HIGH);
-   delayMicroseconds(uDelay);
-   digitalWrite(piezo,LOW);
-   delayMicroseconds(uDelay);
- }
 } 
